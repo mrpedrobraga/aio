@@ -2,8 +2,9 @@
 name = "aio"
 version = "0.1.0"
 edition = "2024"
+publish = false
 
-[dependencies]
-ariadne = "0.6.0"
-chumsky = { version = "0.12.0", features = ["pratt"] }
-cranelift = "0.128.0"
+[workspace]
+members = [
+	"crates/core"
+]
