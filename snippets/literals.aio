@@ -1,0 +1,31 @@
+# In Aio there is special syntax for certain kinds of values.
+# The type these evaluate to is determined from usage.
+
+# Numbers
+
+123_456_789
+
+# More Numbers
+
+123.4
+
+# Hex Numbers
+
+0x123
+
+# Binary Numbers
+
+0b110011
+
+# Booleans
+
+true
+false
+
+# Text
+
+"Hello, World!"
+"My favourite number is {2 + 2}!"
+
+# Patterns
+# ( see the section on patterns )

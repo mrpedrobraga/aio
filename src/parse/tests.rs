@@ -1,10 +1,12 @@
 #[test]
-fn test_int() {
+fn test_parse_int() {
     use crate::{parse::integer_literal, syntax::IntegerLiteral};
     use chumsky::Parser;
 
+    let src = "10_000";
+
     assert_eq!(
-        dbg!(integer_literal().parse("10_000").output()),
+        dbg!(integer_literal().parse(src).output()),
         Some(&IntegerLiteral {
             value: 10000,
             sign: true,

@@ -1,0 +1,9 @@
+abstract AsBytes {
+    fn as_bytes(self) -> [byte...?]
+}
+
+let x;
+
+impl AsBytes for x {
+    fn as_bytes(self) => [ 0xFF, 0xA0, 0xFF, 0xFD ]
+}

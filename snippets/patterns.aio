@@ -1,0 +1,43 @@
+# Patterns in nano are powerful entities which implement the "Pattern" abstract.
+# They are the closest thing to a 'type'.
+# They can "match" a value and possibly produce a type.
+
+abstract Pattern {
+    let Output;
+    fn match(x) -> Maybe(Self::Output);
+}
+
+# Aio has pattern literals for structural patterns like arrays, Text, lists, etc.
+# Structural patterns are algebraic data type constructors. They support:
+# 
+# Product Types: sequences (a, b) and repetition (a...)
+# Sum Types: optionality (a?) and alternance (a or b)
+# Flattening (...a)
+
+let FILE = [ ENTRY...? ]
+let ENTRY = [ let k: ...IDENT, ...padded(EQUALS), let v: ...VALUE, NEWLINE or EOI ]
+let IDENT = [ ALPHA, ALPHANUMERIC...? ]
+let EQUALS = "="
+let VALUE = [ any... ]
+let NEWLINE = [ "\r"?, "\n" ]
+let SPACE = [ " " ]
+fn padded(pattern: Pattern) => [ SPACE...?, pattern, SPACE...? ]
+
+# They also support naming the fields of the generated structures by using `let`;
+# Bindings created this way can be used later in the pattern.
+
+let PALINDROME = [ let left: any...?, any, equals(left.reverse()) ]
+
+# Patterns can be used as bounds!
+
+let file: FILE = "a = 4\nb = 10"
+let map = for [k, v] in file onto acc = HashMap::new() do (
+    acc.with(k, v)
+)
+
+# Function parameters is actually a definition for a kind of structural pattern.
+# And you can use pattern features there!
+
+# This function takes two elements as long as they are the same!
+fn foo(a, b: equals(a)) => ...
+

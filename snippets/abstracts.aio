@@ -1,0 +1,11 @@
+abstract Vector {
+    fn lerp(self, other, t) => (
+        (1 - t) * self + t * other
+    )
+}
+
+impl for let E where E: Vector {
+    fn quad(self, other, t) => (
+        self.lerp(other, t * t)
+    )
+}

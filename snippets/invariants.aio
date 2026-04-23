@@ -1,0 +1,21 @@
+abstract Shape {
+    let perimeter: Number;
+}
+
+abstract Circle: Shape {
+    let radius: Number;
+    let perimeter = radius * 6.2831853;
+    let circumference = perimeter;
+    let origin: Point;
+}
+
+fn get_radius(circumference: Number) => (
+    let c: Circle;
+    c.circumference = circumference;
+    c.radius
+)
+
+abstract Triangle {
+    let incircle: Circle;
+    let circumcircle: Circle;
+}

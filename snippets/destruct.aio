@@ -1,0 +1,33 @@
+# There are some expressions for dealing with Algebraic Data Types!
+
+## `for ... in ...` is a map!
+
+let list = [1, 2, 3]
+let pairs = for item in list do [item, item]
+
+let response = get_text()
+let json = for text in response do JSON::from(text)
+
+## `for ... in ... onto ...` is a catamorphism!
+
+let nums = [1, 2, 3]
+for num in nums onto acc = 0 do acc + num
+for num in nums onto acc do acc + num      # You can omit a default value if type implements "Id"
+
+## `map` is a heterogeneous map!
+
+map ["thing", 34, false] {
+    a => a.as_uppercase(),
+    b => b / 2,
+    c => not c,
+}
+
+either Some(_) {
+    Some => true,
+    None => false
+}
+
+## `if ... then ...` is syntactic sugar for `either` on two-variant types with an Ordering!
+
+# There are also structures for constructing ADTs, like `loop` and patterns.
+
